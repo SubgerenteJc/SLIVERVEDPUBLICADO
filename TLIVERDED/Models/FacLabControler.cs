@@ -39,6 +39,10 @@ namespace TLIVERDED.Models
         {
             return this.modelFact.GetEstatus(orden);
         }
+        public DataTable SelectLegHeader(string orseg)
+        {
+            return this.modelFact.SelectLegHeader(orseg);
+        }
         public DataTable ExisteStatus(string seg)
         {
             return this.modelFact.ExisteStatus(seg);
@@ -66,6 +70,10 @@ namespace TLIVERDED.Models
         public DataTable UpdateLeg(string leg, string tipom)
         {
             return this.modelFact.UpdateLeg(leg, tipom);
+        }
+        public DataTable UpdateOrderHeader(string orheader, string fecha)
+        {
+            return this.modelFact.UpdateOrderHeader(orheader, fecha);
         }
         public DataTable VerErrores(string leg)
         {
