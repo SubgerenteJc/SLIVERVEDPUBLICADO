@@ -23,6 +23,10 @@ namespace TLIVERDED.Models
         {
             this.modelFact.DeleteMerc(Ai_orden);
         }
+        public void OrderHeader(string leg, string rfecha)
+        {
+            this.modelFact.OrderHeader(leg, rfecha);
+        }
         public DataTable GetLeg()
         {
             return this.modelFact.getLeg();
@@ -51,6 +55,14 @@ namespace TLIVERDED.Models
         {
             return this.modelFact.GetSegmentoRepetido(leg);
         }
+        public DataTable GetSegmentoJr(string leg)
+        {
+            return this.modelFact.GetSegmentoJr(leg);
+        }
+        public DataTable GetSegmentoRepetidoReporte(string leg)
+        {
+            return this.modelFact.GetSegmentoRepetidoReporte(leg);
+        }
         public DataTable TieneMercancias(string leg)
         {
             return this.modelFact.TieneMercancias(leg);
@@ -58,6 +70,22 @@ namespace TLIVERDED.Models
         public void GetMerca(string Ai_orden, string segmentod, string Av_cmd_code, string Av_cmd_description, string Af_weight, string Av_weightunit, string Af_count, string Av_countunit)
         {
             this.modelFact.GetMerca(Ai_orden, segmentod, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunit, Af_count, Av_countunit);
+        }
+        public void PullReport(string rrseg)
+        {
+            this.modelFact.PullReport(rrseg);
+        }
+        public void PullReportUpdate(string Ai_orden,string rrseg,string rrbillto,string rrestatus,string fechatim)
+        {
+            this.modelFact.PullReportUpdate(Ai_orden,rrseg, rrbillto, rrestatus, fechatim);
+        }
+        public void PullReportUpdate2(string Ai_orden, string rrseg)
+        {
+            this.modelFact.PullReportUpdate2(Ai_orden, rrseg);
+        }
+        public void PullOrderReport(string Ai_orden)
+        {
+            this.modelFact.PullOrderReport(Ai_orden);
         }
         public void DeleteMerca(string segmentod)
         {

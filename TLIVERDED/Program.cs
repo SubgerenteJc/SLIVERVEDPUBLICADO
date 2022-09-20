@@ -55,7 +55,22 @@ namespace TLIVERDED
 
 
             Program muobject = new Program();
-            //string orseg = "1316643";
+            //string orseg = "1321228";
+            //DataTable rorder = facLabControler.SelectLegHeader(orseg);
+
+            //if (rorder.Rows.Count > 0)
+            //{
+            //    foreach (DataRow reslo in rorder.Rows)
+            //    {
+            //        string rorderh = reslo["ord_hdrnumber"].ToString();
+            //        DateTime dt = DateTime.Parse(reslo["fecha"].ToString());
+            //        string rfecha = dt.ToString("yyyy'/'MM'/'dd HH:mm:ss");
+            //        DataTable uporder = facLabControler.UpdateOrderHeader(rorderh, rfecha);
+            //        facLabControler.OrderHeader(rorderh, rfecha);
+            //    }
+            //}
+
+
             //DataTable rorder = facLabControler.SelectLegHeader(orseg);
 
             //if (rorder.Rows.Count > 0)
@@ -68,20 +83,23 @@ namespace TLIVERDED
             //        DataTable uporder = facLabControler.UpdateOrderHeader(rorderh, rfecha);
             //    }
             //}
-
+            //muobject.Reporte();
             muobject.Extraer();
+
             
+
             //PASO 1 - VALIDA EN TRALIX QUE NO EXISTA EL SEGMENTO
             //facLabControler.RegEjecucion();
 
         }
 
+        
         public void Extraer()
         {
             string[] values;
             DataTable tbl = new DataTable();
-            //DirectoryInfo di24 = new DirectoryInfo(@"\\10.223.208.41\Users\Administrator\Documents\LIVERDED");
-            DirectoryInfo di24 = new DirectoryInfo(@"C:\Administración\Proyecto LIVERDED\Ordenes");
+            DirectoryInfo di24 = new DirectoryInfo(@"\\10.223.208.41\Users\Administrator\Documents\LIVERDED");
+            //DirectoryInfo di24 = new DirectoryInfo(@"C:\Administración\Proyecto LIVERDED\Ordenes");
             
             FileInfo[] files24 = di24.GetFiles("*.dat");
             
@@ -91,8 +109,8 @@ namespace TLIVERDED
             {
                 foreach (var item in files24)
                 {
-                    //string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDED\" + item.Name;
-                    string sourceFile = @"C:\Administración\Proyecto LIVERDED\Ordenes\" + item.Name;
+                    string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDED\" + item.Name;
+                    //string sourceFile = @"C:\Administración\Proyecto LIVERDED\Ordenes\" + item.Name;
                     string[] strAllLines = File.ReadAllLines(sourceFile, Encoding.Default);
                     File.WriteAllLines(sourceFile, strAllLines.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray());
                     string lna = item.Name.ToLower();
@@ -150,8 +168,8 @@ namespace TLIVERDED
                                     counter++;
                                 }
                                 facLabControler.DeleteMerca(segmentod);
-                                //string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDEDUPLOADS\" + item.Name;
-                                string destinationFile = @"C:\Administración\Proyecto LIVERDED\Procesadas\" + item.Name;
+                                string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDEDUPLOADS\" + item.Name;
+                                //string destinationFile = @"C:\Administración\Proyecto LIVERDED\Procesadas\" + item.Name;
                                 System.IO.File.Move(sourceFile, destinationFile);
 
 
@@ -392,8 +410,8 @@ namespace TLIVERDED
                                         }
 
                                         facLabControler.DeleteMerc(Ai_orden);
-                                        //string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDEDUPLOADS\" + item.Name;
-                                        string destinationFile = @"C:\Administración\Proyecto LIVERDED\Procesadas\" + item.Name;
+                                        string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDEDUPLOADS\" + item.Name;
+                                        //string destinationFile = @"C:\Administración\Proyecto LIVERDED\Procesadas\" + item.Name;
                                         System.IO.File.Move(sourceFile, destinationFile);
                                         //facLabControler.DeleteMerc(Ai_orden);
 
@@ -598,7 +616,8 @@ namespace TLIVERDED
                 }
             }
         }
-        public static List<string> valida(string leg)
+      
+            public static List<string> valida(string leg)
         {
             string compCarta = "";
             results.Clear();
@@ -644,6 +663,7 @@ namespace TLIVERDED
                                             DateTime dt = DateTime.Parse(reslo["fecha"].ToString());
                                             string rfecha = dt.ToString("yyyy'/'MM'/'dd HH:mm:ss");
                                             DataTable uporder = facLabControler.UpdateOrderHeader(rorderh, rfecha);
+                                            facLabControler.OrderHeader(rorderh, rfecha);
                                         }
                                     }
 
